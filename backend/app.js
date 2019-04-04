@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 const user = require('./routes/user')(app);
 const post = require('./routes/postRoute');
 
-/*app.post('/api/users', (req, res, next) =>{
+app.post('/users', (req, res, next) =>{
     res.send(require('./routes/user'));
     next();
 });
@@ -39,10 +39,10 @@ app.post('/posts', (req, res, next) => {
     res.send(require('./routes/postRoute'));
     next();
 });
-app.post('/api/users/login', (req, res, next) => {
+app.post('/login', (req, res, next) => {
     res.send(require('./routes/user'));
     next();
-});*/
+});
 
 app.get('/', function(req, res) {
     res.send('Hello World');
