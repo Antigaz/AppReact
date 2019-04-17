@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const user = require('./routes/user')(app);
-const post = require('./routes/postRoute');
+const post = require('./routes/postRoute')(app);
 
 app.post('/users', (req, res, next) =>{
     res.send(require('./routes/user'));

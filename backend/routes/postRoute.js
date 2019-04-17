@@ -12,7 +12,7 @@ module.exports = function (app) {
     x = app;
 
 // Defined store route
-    app.post('/add')(function (req, res) {
+    app.post('/add', function (req, res) {
         let post = new Post(req.body);
         post.save()
             .then(post => {
@@ -24,8 +24,8 @@ module.exports = function (app) {
     });
 
 // Defined get data(index or listing) route
-    app.get('/')(function (req, res) {
-        Post.find(function (err, posts) {
+    app.get('/', function (req, res) {
+        Post.find({}).sort({date: -1}).exec(function (err, posts) {
             if (err) {
                 console.log(err);
             } else {
@@ -35,10 +35,11 @@ module.exports = function (app) {
     });
 
 // Defined delete | remove | destroy route
-    app.get('/delete/:id')(function (req, res) {
+    app.get('/delete/:id', function (req, res) {
         Post.findByIdAndRemove({_id: req.params.id}, function (err, post) {
             if (err) res.json(err);
             else res.json(req.params.id);
         });
     });
+
 }

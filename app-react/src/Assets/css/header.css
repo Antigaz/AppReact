@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Sniglet');
+@import url('https://fonts.googleapis.com/css?family=Cute+Font');
 @import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
 .navbar-brand {
-    font-family: 'Sniglet', cursive;
-    font-size: 36px;
+    font-family: 'Cute Font', cursive;
+    font-size: 46px;
     font-weight: 700;
-    color: #f82b9b!important;
+    color: #112380!important;
+    padding: 0;
 }
 
 .navbar-brand span {
@@ -20,5 +21,9 @@
 }
 
 .nav-link:hover {
-    color: #f82b9b!important;
+    color: #112380!important;
+}
+
+.bg-light {
+    background-color: #d8d6e6!important;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Assets/css/posts.css';
 
 class NewPost extends React.Component {
     state = {
@@ -34,33 +35,32 @@ class NewPost extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={ this.handleSubmit }>
+                <form className="newPost" onSubmit={ this.handleSubmit }>
                     <div className="form-group">
                         <input
                             type="text"
-                            placeholder="Title"
-                            className="form-control"
+                            placeholder="Titre"
+                            className="form-control titleNewPost"
                             name="title"
                             onChange={ this.handleInputChange }
                             value={ this.state.title }
                         />
                     </div>
-                    <p onChange={ this.handleInputChange }>{this.state.date }</p>
                     <div className="form-group">
                         <textarea
                             cols="19"
-                            rows="8"
-                            placeholder="Body"
-                            className="form-control"
+                            rows="3"
+                            placeholder="Corps"
+                            className="form-control bodyNewpost"
                             name="body"
                             onChange={ this.handleInputChange }
                             value={ this.state.body }>
                         </textarea>
                     </div>
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-primary">Add Post</button>
+                    <div className="form-group boutonsPost">
+                        <button type="submit" className="btn btn-primary">Ajouter</button>
                         <button type="button" className="btn btn-warning" onClick={ this.handleReset }>
-                            Reset
+                            RAZ
                         </button>
                     </div>
                 </form>

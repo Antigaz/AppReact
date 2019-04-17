@@ -1,0 +1,43 @@
+.boutonsPost {
+    text-align: right;
+    width: 100%;
+}
+.RienIci {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.newPost {
+    background: #fff;
+    border: 1px #696969  solid;
+    border-radius: 0;
+}
+
+.newPost .form-group {
+    margin-bottom: 0;
+}
+
+.newPost .btn {
+    width: 150px;
+    border-radius: 0;
+}
+
+.btn-primary {
+    background: #41449f;
+    border-color: #41449f;
+}
+
+.btn-warning {
+    background: #ffb735;
+    background: #ffb735;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
+.titleNewPost,
+.bodyNewpost {
+    border-bottom: 1px solid #696969;
+}

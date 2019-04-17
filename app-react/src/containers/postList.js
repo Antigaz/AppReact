@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 import Post from '../components/post';
 import { deletePost } from '../actions';
 
+
+
 function PostList({ posts, onDelete }) {
+    const nbPosts = posts.length;
     if(!posts.length) {
         return (
-            <div>
-                No Posts
+            <div className='RienIci'>
+                Il n'y a rien ici :/
             </div>
         )
     }
@@ -20,6 +23,7 @@ function PostList({ posts, onDelete }) {
             })}
         </div>
     );
+
 }
 
 const mapStateToProps = state => {

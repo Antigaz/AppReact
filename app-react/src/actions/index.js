@@ -1,7 +1,7 @@
 import { ADD_POST, DELETE_POST, FETCH_POST } from './types';
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:5000/posts';
+const apiUrl = 'http://localhost:5000';
 
 export const createPost = ({ title, date, body }) => {
     return (dispatch) => {
@@ -60,6 +60,7 @@ export const fetchAllPosts = () => {
         return axios.get(apiUrl)
             .then(response => {
                 dispatch(fetchPosts(response.data))
+                console.log(apiUrl);
             })
             .catch(error => {
                 throw(error);

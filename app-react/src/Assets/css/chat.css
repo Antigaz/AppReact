@@ -1,0 +1,32 @@
+.chat {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
+.card-body {
+    width: 300px;
+    overflow-y: scroll;
+    max-height: 350px;
+}
+
+.messages {
+    max-width: 175px;
+    height: auto;
+    background-color: azure;
+    padding: 10px;
+    margin-top: 35px;
+    float: right;
+}
+
+.card-header {
+    position: absolute;
+    background: dimgrey;
+    padding: 0px 100px;
+    text-align: center;
+    color: white;
+}
+
+.card-title {
+    margin: 5px 0;
+}

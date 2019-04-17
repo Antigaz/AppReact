@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Assets/css/posts.css';
 
 const styles = {
     borderBottom: '2px solid #eee',
@@ -16,7 +17,7 @@ export default ({ post: { title, date, body, _id }, onDelete }) => {
             <p>{ date }</p>
             <p>{ body }</p>
             <button className="btn btn-danger" type="button" onClick={() => onDelete(_id)}>
-                Remove
+                Supprimer
             </button>
         </div>
     );
