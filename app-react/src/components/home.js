@@ -8,10 +8,6 @@ import {connect} from "react-redux";
 
 class Home extends Component {
 
-    componentDidMount(){
-        return this.fetchAllPosts;
-    }
-
     render() {
 
         const user = this.props.user;

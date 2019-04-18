@@ -8,6 +8,7 @@ export const createPost = ({ title, date, body }) => {
         return axios.post(`${apiUrl}/add`, {title, date, body})
             .then(response => {
                 dispatch(createPostSuccess(response.data))
+                window.location.reload();
             })
             .catch(error => {
                 throw(error);
@@ -36,8 +37,8 @@ export const deletePostSuccess = id => {
     }
 }
 
-export const deletePost = id => {
-    return (dispatch) => {
+export const deletePost = dispatch => {
+    return (id) => {
         return axios.get(`${apiUrl}/delete/${id}`)
             .then(response => {
                 dispatch(deletePostSuccess(response.data))
@@ -55,12 +56,11 @@ export const fetchPosts = (posts) => {
     }
 };
 
-export const fetchAllPosts = () => {
-    return (dispatch) => {
+export const fetchAllPosts = (dispatch) => {
+    return () => {
         return axios.get(apiUrl)
             .then(response => {
-                dispatch(fetchPosts(response.data))
-                console.log(apiUrl);
+                dispatch(fetchPosts(response.data));
             })
             .catch(error => {
                 throw(error);

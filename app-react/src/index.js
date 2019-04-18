@@ -4,18 +4,19 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
 import rootReducer from './reducers';
-import { fetchAllPosts } from './actions/index';
 
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-store.dispatch(fetchAllPosts());
+const store = createStore(rootReducer, /*preloadedState, */ composeEnhancers(applyMiddleware(thunk)));
+
+
 
 ReactDOM.render(
     <Provider store={store}>

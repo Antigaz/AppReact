@@ -21,7 +21,7 @@ class Navbar extends Component {
                      style={{ width: '50px', height:'50px', marginRight: '5px'}} />
                 <Link className="nav-link" to="/profil">Profil</Link>
                 <a href="#" className="nav-link" onClick={this.onLogout.bind(this)}>
-                    Logout
+                    Déconnexion
                 </a>
             </ul>
         )

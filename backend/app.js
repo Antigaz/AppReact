@@ -18,7 +18,7 @@ const PORT = 5000;
 
 const app = express();
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const io = new require('socket.io')(server);
 
 app.use(cors());
 
@@ -30,6 +30,7 @@ app.use(bodyParser.json());
 
 const user = require('./routes/user')(app);
 const post = require('./routes/postRoute')(app);
+const messages = require('./routes/messages')(app);
 
 app.post('/users', (req, res, next) =>{
     res.send(require('./routes/user'));
@@ -44,19 +45,29 @@ app.post('/login', (req, res, next) => {
     next();
 });
 
+app.post('/messages', function(req, res) {
+    res.send(require('./routes/messages'));
+    next();
+});
+
 app.get('/', function(req, res) {
     res.send('Hello World');
 });
 
-server.listen(PORT);
 
-/*app.listen(PORT, () => {
-    console.log(`Server is running on PORT ${PORT}`);
-});*/
+let appp = require('http').createServer()
+let io = module.exports.io = require('socket.io')(appp)
 
+const PORTT = process.env.PORTT || 5000;
+const SocketManager = require('./SocketManager');
+io.on('connection', SocketManager);
+server.listen(PORTT);
+/*
 io.on('connection', (socket) => {
-    console.log(socket.id);
+    /!*console.log(socket.id);*!/
     socket.on('SEND_MESSAGE', function(data){
         io.emit('RECEIVE_MESSAGE', data);
     })
-});
+    let total = io.engine.clientsCount;
+    socket.emit('getCount',total)
+});*/

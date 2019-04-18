@@ -19,7 +19,7 @@
 }
 
 .newPost .btn {
-    width: 150px;
+    width: 130px;
     border-radius: 0;
 }
 
@@ -29,8 +29,13 @@
 }
 
 .btn-warning {
-    background: #ffb735;
-    background: #ffb735;
+    background: #fff;
+    border-color: #fff;
+}
+
+.btn-warning:hover {
+    background: #f5f5f5;
+    border-color: #fff;
 }
 
 .form-control {
@@ -40,4 +45,40 @@
 .titleNewPost,
 .bodyNewpost {
     border-bottom: 1px solid #696969;
+}
+
+.card-post {
+    position: relative;
+}
+
+.card-post .btn-danger {
+    background: #e77580;
+    border-color: #e77580;
+    border-radius: 0;
+    padding: 0 6px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.card-post::after {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    left: -36px;
+    background: #41449f;
+    top: 40%;
+    content: '';
+    position: absolute;
+    display: block;
+}
+
+.pj {
+    background: #f5f5f5;
+    float: left;
+    border-right: 1px solid #696969;
+}
+
+.pj:hover {
+    background-color: #b3ceff;
 }

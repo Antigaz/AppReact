@@ -1,29 +1,33 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Post from '../components/post';
-import { deletePost } from '../actions';
+import { deletePost,fetchAllPosts } from '../actions';
 
+class PostList extends Component {
 
-
-function PostList({ posts, onDelete }) {
-    const nbPosts = posts.length;
-    if(!posts.length) {
-        return (
-            <div className='RienIci'>
-                Il n'y a rien ici :/
-            </div>
-        )
+    componentDidMount() {
+        this.props.fetchAllPosts();
     }
-    return (
-        <div>
-            {posts.map(post => {
-                return (
-                    <Post post={ post } onDelete={ onDelete } key={ post._id } />
-                );
-            })}
-        </div>
-    );
 
+    render() {
+        if(!this.props.posts.length) {
+            return (
+                <div className='RienIci'>
+                    Il n'y a rien ici :/
+                </div>
+            )
+        }
+        return (
+            <div>
+                {this.props.posts.map(post => {
+                    return (
+                        <Post post={ post } onDelete={ this.props.deletePost } key={ post._id } />
+                    );
+                })}
+            </div>
+        );
+
+    }
 }
 
 const mapStateToProps = state => {
@@ -34,9 +38,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onDelete: id => {
-            dispatch(deletePost(id));
-        }
+        deletePost: deletePost(dispatch),
+        fetchAllPosts: fetchAllPosts(dispatch)
     };
 };
 

@@ -9,6 +9,7 @@ class Profil extends Component {
 
         const user = this.props.user;
         const posts = this.props.posts;
+        const nbPosts = posts.length;
 
         return (
             <div>
@@ -30,24 +31,16 @@ class Profil extends Component {
                                         type="text"
                                         name="name"
                                         value= {user.name}
+                                        onChange={(event)=>this.setState(event)}
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        value= {user.email}
-                                    />
+                                    <p>
+                                        {user.email}
+                                    </p>
                                 </div>
-                                <div className="form-group">
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        value={ user.password }
-                                    />
-                                </div>
-                                <p>Nombre de post:
-                                    {nbPosts}
+                                <p>Nombre de posts créés:
+                                     &nbsp;{ nbPosts }
                                 </p>
                             </form>
                         </div>
@@ -59,7 +52,8 @@ class Profil extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.auth.user
+    user: state.auth.user,
+    posts: state.posts
 })
 
 export default withRouter(connect(mapStateToProps)(Profil));

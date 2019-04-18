@@ -30,6 +30,7 @@ module.exports = function (app) {
                 console.log(err);
             } else {
                 res.json(posts);
+                console.log(posts);
             }
         });
     });
