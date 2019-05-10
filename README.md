@@ -1,22 +1,24 @@
 # AppReact
-Social Network with ReactJS
+Social Network with ReactJS__
+__
+## Run MongoDB
 
-Run MongoDB
-
-Run frontend :
-
+## Run frontend :
+```bash
 cd app-react
 npm install
 npm start
+```
 
 
-Run backend :
-
+## Run backend :
+```bash
 cd backend
 npm install
 nodemon app
+```
 
-Frontend Port = 3000
-Backend Port = 5000 
-MONGODB_URI=mongodb://localhost:27017/db 
+Frontend Port = 3000__
+Backend Port = 5000__
+MONGODB_URI=mongodb://localhost:27017/db__
 nodemon app
