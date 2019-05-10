@@ -17,8 +17,6 @@ import './Assets/css/header.css';
 import './Assets/css/home.css';
 
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import Layout from "./components/Layout";
-
 
 if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -34,9 +32,6 @@ if (localStorage.jwtToken) {
 
 class App extends Component {
 
-
-
-
     render() {
         return (
             <Provider store={store}>
@@ -47,7 +42,6 @@ class App extends Component {
                         <Route exact path="/login" component={Login}/>
                         <Route exact path="/profil" component={Profil}/>
                         <Route exact path="/" component={Home}/>
-                        <Layout />
                     </div>
                 </Router>
             </Provider>

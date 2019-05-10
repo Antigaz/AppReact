@@ -1,24 +1,22 @@
-const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const config = require('./config/db');
+const http = require('http');
 const cors = require('cors');
-const path = require('path');
+
+const express = require('express'),
+    app = module.exports.app = express();
+const server = http.createServer(app);
+
 const users = require('./routes/user');
 const postroutes = require('./routes/postRoute');
+const messages = require('./routes/messages');
 
-mongoose.Promise = global.Promise;
-mongoose.connect(config.DB).then(
+mongoose.connect(config.DB, { useNewUrlParser: true }).then(
     () => {console.log('Database is connected') },
     err => { console.log('Can not connect to the database'+ err)}
 );
-
-const PORT = 5000;
-
-const app = express();
-const server = require('http').Server(app);
-const io = new require('socket.io')(server);
 
 app.use(cors());
 
@@ -28,46 +26,25 @@ require('./passport')(passport);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const user = require('./routes/user')(app);
-const post = require('./routes/postRoute')(app);
-const messages = require('./routes/messages')(app);
+app.use('/api/users', users);
 
-app.post('/users', (req, res, next) =>{
-    res.send(require('./routes/user'));
-    next();
-});
-app.post('/posts', (req, res, next) => {
-    res.send(require('./routes/postRoute'));
-    next();
-});
-app.post('/login', (req, res, next) => {
-    res.send(require('./routes/user'));
-    next();
-});
-
-app.post('/messages', function(req, res) {
-    res.send(require('./routes/messages'));
-    next();
-});
+app.use('/api/posts', postroutes);
 
 app.get('/', function(req, res) {
-    res.send('Hello World');
+    res.send('hello');
 });
 
+const PORT = process.env.PORT || 5000;
 
-let appp = require('http').createServer()
-let io = module.exports.io = require('socket.io')(appp)
+server.listen(PORT, () => {
+    console.log(`Server is running on PORT ${PORT}`);
+});
 
-const PORTT = process.env.PORTT || 5000;
-const SocketManager = require('./SocketManager');
-io.on('connection', SocketManager);
-server.listen(PORTT);
-/*
+const io = require('socket.io').listen(server);
+
 io.on('connection', (socket) => {
-    /!*console.log(socket.id);*!/
+    /*console.log(socket.id);*/
     socket.on('SEND_MESSAGE', function(data){
         io.emit('RECEIVE_MESSAGE', data);
     })
-    let total = io.engine.clientsCount;
-    socket.emit('getCount',total)
-});*/
+});

@@ -35,10 +35,22 @@ class Profil extends Component {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <p>
-                                        {user.email}
-                                    </p>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value= {user.id}
+                                        onChange={(event)=>this.setState(event)}
+                                    />
                                 </div>
+                                <div className="form-group">
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value= {user.email}
+                                        onChange={(event)=>this.setState(event)}
+                                    />
+                                </div>
+                                <p>{user.date}</p>
                                 <p>Nombre de posts créés:
                                      &nbsp;{ nbPosts }
                                 </p>

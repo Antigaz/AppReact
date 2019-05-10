@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Post from '../components/post';
-import { deletePost,fetchAllPosts } from '../actions';
+import { deletePost, fetchAllPosts, updatePost } from '../actions';
 
 class PostList extends Component {
 
@@ -21,7 +21,7 @@ class PostList extends Component {
             <div>
                 {this.props.posts.map(post => {
                     return (
-                        <Post post={ post } onDelete={ this.props.deletePost } key={ post._id } />
+                        <Post post={ post } onDelete={ this.props.deletePost } onUpdate={ this.props.updatePost } key={ post._id } />
                     );
                 })}
             </div>
@@ -32,13 +32,15 @@ class PostList extends Component {
 
 const mapStateToProps = state => {
     return {
-        posts: state.posts
+        posts: state.posts,
+        user: state.auth.user
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         deletePost: deletePost(dispatch),
+        updatePost: updatePost(dispatch),
         fetchAllPosts: fetchAllPosts(dispatch)
     };
 };

@@ -1,18 +1,24 @@
 import React from 'react';
 import '../Assets/css/posts.css';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import Moment from 'react-moment';
-
-library.add(faTrash);
+import PictureVideo from "./postActions/pictureVideo";
+import Sondage from "./postActions/sondage";
+import {withRouter} from "react-router";
+import {connect} from "react-redux";
 
 class NewPost extends React.Component {
-    state = {
-        title: '',
-        body: '',
-        date: ''
-    };
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            id_user: this.props.user.id,
+            title: '',
+            body: '',
+            date: '',
+            selectedFile: null
+        };
+    }
+
 
     handleInputChange = e => {
         this.setState({
@@ -23,10 +29,7 @@ class NewPost extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
 
-        var tempDate = new Date();
-        this.state.date = tempDate.getFullYear() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getDate() +' '+ (tempDate.getHours()+1)+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
-
-        if (this.state.title.trim() && this.state.body.trim() && this.state.date) {
+        if (this.props.user.id && this.state.body.trim()) {
             this.props.onAddPost(this.state);
             this.handleReset();
         }
@@ -34,10 +37,13 @@ class NewPost extends React.Component {
 
     handleReset = () => {
         this.setState({
+            id_user: this.props.user.id,
             title: '',
             body: ''
         });
     };
+
+
 
     render() {
         return (
@@ -65,12 +71,8 @@ class NewPost extends React.Component {
                         </textarea>
                     </div>
                     <div className="form-group boutonsPost">
-                        <button type="button" className="btn btn-warning pj">
-                            Photo/Vidéo
-                        </button>
-                        <button type="button" className="btn btn-warning pj">
-                            Sondage
-                        </button>
+                        <PictureVideo />
+                        <Sondage />
                         <button type="button" className="btn btn-warning pj">
                             Identifier
                         </button>
@@ -85,4 +87,8 @@ class NewPost extends React.Component {
     }
 }
 
-export default NewPost;
+const mapStateToProps = (state) => ({
+    user: state.auth.user
+});
+
+export default withRouter(connect(mapStateToProps)(NewPost));

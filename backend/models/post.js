@@ -6,15 +6,17 @@ let Post = new Schema({
     title: {
         type: String
     },
+    body: {
+        type: String
+    },
     date: {
         type: Date,
         default: Date.now
     },
-    body: {
-        type: String
+    id_user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
-},{
-    collection: 'posts'
 });
 
 module.exports = mongoose.model('Post', Post);

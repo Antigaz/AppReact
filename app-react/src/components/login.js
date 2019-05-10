@@ -12,7 +12,7 @@ class Login extends Component {
             email: '',
             password: '',
             errors: {}
-        }
+        };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -28,8 +28,14 @@ class Login extends Component {
         const user = {
             email: this.state.email,
             password: this.state.password,
-        }
+        };
         this.props.loginUser(user);
+    }
+
+    componentDidMount() {
+        if(this.props.auth.isAuthenticated) {
+            this.props.history.push('/');
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -61,7 +67,7 @@ class Login extends Component {
                             onChange={ this.handleInputChange }
                             value={ this.state.email }
                         />
-                        {errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
+                        { errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
                     </div>
                     <div className="form-group">
                         <input
@@ -78,7 +84,7 @@ class Login extends Component {
                     </div>
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary">
-                            Login User
+                            Se connecter
                         </button>
                     </div>
                 </form>
@@ -91,11 +97,11 @@ Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
-}
+};
 
 const mapStateToProps = (state) => ({
-    errors: state.errors,
-    auth: state.auth
-})
+    auth: state.auth,
+    errors: state.errors
+});
 
 export  default connect(mapStateToProps, { loginUser })(Login)
